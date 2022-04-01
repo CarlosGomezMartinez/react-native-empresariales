@@ -1,17 +1,25 @@
-import React from 'react';
-// import { Outlet } from 'react-native-router-dom';
-// // import Footer from '../components/Footer';
-// import Navbar from 'components/Navbar';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Navbar from '../components/Navbar';
+import Navigation from '../navigation/Navigation';
+// import Footer from '../components/Footer'
 
-const PublicLayout = () => (
-  <div className='flex flex-col'>
-    {/* <Navbar /> */}
-    <div className='h-full'>
-      {/* <Outlet /> */}
-    </div>
-    layout
+const PublicLayout = () => {
+  const [value, setValue] = useState('');
+  const [onSearch, setOnSearch] = useState('');
+  const handleSearch = () => {
+    setOnSearch(value)
+  }
+
+  return (
+  <View>
+    <Navbar value={value} setValue={setValue} onSearch={handleSearch}/> 
+    <NavigationContainer>
+      <Navigation onSearch={onSearch}/>
+    </NavigationContainer>
     {/* <Footer /> */}
-  </div>
-);
+  </View>
+)};
 
 export default PublicLayout;
