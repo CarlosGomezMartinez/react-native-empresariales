@@ -1,8 +1,7 @@
-import PublicLayout from './layout/public-layout';
-const App = () => {
-  return (
-    <PublicLayout />
-  );
-}
+import * as React from 'react';
+import {View, Text} from 'react-native'
+import Navigation from './navigation/Navigation';
+
+const App = () => <Navigation />; 
 
 export default  App
