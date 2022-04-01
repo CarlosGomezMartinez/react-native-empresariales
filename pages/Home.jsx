@@ -1,14 +1,15 @@
-import React from 'react';
-import { Button} from 'react-native';
-
+import React, {useState} from 'react';
+import { View } from 'react-native';
+import Navbar from '../components/Navbar';
 const Home = ({ navigation }) => {
+  const [value, setValue] = useState('');
+  const handleSearch = () => {
+    console.log('press')
+  }
   return (
-    <Button
-      title="Go to Jane's profile"
-      onPress={() =>
-        navigation.navigate('Results')
-      }
-    />
+    <View>
+      <Navbar value={value} setValue={setValue} onSearch={handleSearch}/> 
+    </View>
   );
 };
 
