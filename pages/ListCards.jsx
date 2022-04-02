@@ -31,8 +31,9 @@ const ListCards = () => {
             data= { products }
             keyExtractor= {(item) => item.id}
             renderItem= { (item, index)=>
-            <Cardview item = {item}/>
+            <Cardview item = {item}/>            
             }                
+            numColumns={2}
             />
         </SafeAreaView>
     );

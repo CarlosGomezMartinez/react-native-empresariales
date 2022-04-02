@@ -5,7 +5,10 @@ import { Text, Card, Button, Icon } from "react-native-elements";
 class Cardview extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    console.log(props)
+    //console.log(props.item.item.nombre)
+    this.state = {      
+    };
   }
 
   render() {
@@ -20,13 +23,14 @@ class Cardview extends Component {
               uri: "https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg",
             }}
           />
-          <Text style={StyleSheet.card_text}>texto de prueba ...</Text>
+          <Text style={StyleSheet.card_text}>{this.props.item.item.nombre}</Text>
+          <Text style={StyleSheet.card_text}>{this.props.item.item.color}</Text>
           <Button
             icon={
               <Icon name="code" color="#ffffff" iconStyle={ StyleSheet.card_icon}/>
             }
             buttonStyle={StyleSheet.card_button}
-            title="Agregar al carrito"
+            title="Ver"
           />
         </Card>
       </View>
