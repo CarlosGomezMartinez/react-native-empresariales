@@ -24,7 +24,7 @@ const Cardview = ({item, showInfo = true}) => {
           <Button            
             buttonStyle={StyleSheet.card_button}
             title="Ver"
-            //onPress={navigation.navigate("Results")} -> cambiar por el nombre del componente de detalles card
+            onPress={navigation.navigate("Details", {code: item.product_code})} 
           />
         </>
         )}

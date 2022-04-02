@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View } from 'react-native';
+import Details from '../pages/Details';
 
 import Home from '../pages/Home';
 import Results from '../pages/Results';
@@ -19,6 +19,10 @@ const Navigation = () => {
         <Stack.Screen 
           name="Results"
           component={Results}
+          />
+          <Stack.Screen 
+          name="Details"
+          component={Details}
           />
       </Stack.Navigator>
     </NavigationContainer>
