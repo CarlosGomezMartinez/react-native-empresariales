@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, ScrollView} from 'react-native';
+import { View, Text, ScrollView, StyleSheet} from 'react-native';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import Cardview from '../components/Cardview';
@@ -40,28 +40,39 @@ const Home = ({ navigation }) => {
       <Navbar value={value} setValue={setValue} onSearch={handleSearch}/>
       
       <ScrollView style={{flex:1, backgroundColor:'white'}}>
-        <View>
-          <Text>Fisrt Section</Text>
-        </View>
-        <View>
-          <Text>Que estas buscando hoy section</Text>
+        <View style={styles.container}>
+          <Text style={styles.titles}>¿Qué estás buscando hoy?</Text>
           <Cardview item={items[0]} showInfo={false} navigation={navigation}/>  
         </View>
-        <View>
+        {/* <View>
           <Text>long card</Text>
           <Text>2 short cards</Text>
         </View>
         <View>
           <Text>2 short cards</Text>
           <Text>long card</Text>
-        </View>
-        <View>
-          <Text> Productos Recientes </Text>
+        </View> */}
+        <View style={styles.container}>
+          <Text style={styles.titles}> Productos Recientes </Text>
+          <Cardview item={items[1]} showInfo={false} navigation={navigation}/>
         </View>
         <Footer />
       </ScrollView>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container:{
+    paddingVertical: 10,
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  titles: {
+    textAlign:'center',
+    color: '#772CE8',
+    fontSize: 18
+  }
+})
 
 export default Home;
