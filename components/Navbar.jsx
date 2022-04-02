@@ -1,10 +1,23 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Text, Platform} from 'react-native'
+import {View, TextInput, StyleSheet, Text, Platform, Image} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableWithoutFeedback } from 'react-native-web';
+import OldWavePic from '../assets/oldwave-logo-horizontal.png';
 const Navbar = ({ value, setValue, onSearch}) => (
   <View>
-    <View style={{marginTop: Platform.OS=='web' ? 0 : 25}}><Text>OWAVE TEST</Text></View>
+    <View style={{marginTop: Platform.OS=='web' ? 0 : 25, paddingVertical:20, display:'flex', flexDirection:'row', width: '100%'}}>
+      <View style={{width: '5%', display:'flex', justifyContent:'center', alignItems:'center', marginLeft: 20}}>
+        <Icon onPress={onSearch} name="bars" size={30} color="#772CE8"/>
+      </View>
+      <View style={{width: '70%'}}>
+        <Image source={OldWavePic} style={{width: 200,height: 50}}/>
+      </View>
+      <View style={{width: '20%',  display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+        <Icon onPress={onSearch} name="user" size={30} color="#772CE8" style={{marginRight:20}}/>
+        <Icon onPress={onSearch} name="shopping-basket" size={30} color="#772CE8" style={{marginRight:20}}/>
+      </View>
+
+      </View>
     <View style={styles.search}>
       <TouchableWithoutFeedback onPress={onSearch}>
         <View style={styles.searchIcon}>
@@ -62,8 +75,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius:15, 
     borderBottomRightRadius: 15, 
     fontSize: 16,
-    // outlineColor: 'transparent',
-    // outlineStyle: 'none'
   },
 });
 
