@@ -37,9 +37,9 @@ const Results = ({ navigation, route }) => {
             data= { products }
             keyExtractor= {(item) => item.product_code}
             renderItem= { (item, index)=>
-            <Cardview item = {item}/>            
+            <Cardview item = {item} navigation={navigation}/>            
             }                
-            numColumns={3}
+            numColumns={4}
             />
     </View>
   );
