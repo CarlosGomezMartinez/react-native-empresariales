@@ -10,12 +10,12 @@ const Details = ({route}) => {
   const [product, setProduct] = useState({});
 
   useEffect( async ()=>{
-    // if(route.params?.code){
-      const res = await getProductById(5)
+     if(route.params?.code){
+      const res = await getProductById(3)
       if (res && res.data && res.status == 200){
         setProduct(res.data)
       }
-    // } 
+     } 
   }, []) 
 
   return (
