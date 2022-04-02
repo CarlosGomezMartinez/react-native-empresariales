@@ -11,11 +11,11 @@ const Details = ({route}) => {
 
   useEffect( async ()=>{
     // if(route.params?.code){
-    //   const res = await getProductById(5)
-    //   if (res && res.data && res.status == 200){
-    //     setProduct(res.data.items)
-    //   }
-    // }  
+      const res = await getProductById(5)
+      if (res && res.data && res.status == 200){
+        setProduct(res.data)
+      }
+    // } 
   }, []) 
 
   return (
