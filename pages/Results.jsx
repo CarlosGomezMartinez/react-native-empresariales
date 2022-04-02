@@ -11,16 +11,22 @@ const Results = ({ navigation, route }) => {
   const [value, setValue] = useState('');
   const [products, setProducts] = useState([]);
 
-  useEffect( ()=>{
-    async function loadProducts(){
-      const res = await getProduct('Iphone',1,5)
-    }    
-    loadProducts()
+  useEffect(()=>{
+    if(route.params.search){
+      search(route.params.search)
+    }
   }, [])
 
   const handleSearch = () => {
-    response = getProduct(route.params.search, 1, 5) 
-    console.log(response)
+    if(value){ 
+      search(value)
+    }
+  }
+  const search = async (name)=> {
+    const res = await getProduct({name , page:1, size:5})
+    if (res && res.data && res.status == 200) {
+      setProducts(res.data.items)
+    }
   }
 
   
@@ -28,8 +34,8 @@ const Results = ({ navigation, route }) => {
     <View>
       <Navbar value={value} setValue={setValue} onSearch={handleSearch()}/>
       <FlatList
-            data= { response }
-            keyExtractor= {(item) => item.id}
+            data= { products }
+            keyExtractor= {(item) => item.product_code}
             renderItem= { (item, index)=>
             <Cardview item = {item}/>            
             }                
