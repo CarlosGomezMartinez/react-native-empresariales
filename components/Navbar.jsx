@@ -62,8 +62,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius:15, 
     borderBottomRightRadius: 15, 
     fontSize: 16,
-    // outlineColor: 'transparent',
-    // outlineStyle: 'none'
   },
 });
 

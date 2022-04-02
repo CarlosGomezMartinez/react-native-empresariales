@@ -9,7 +9,7 @@ const Results = ({ navigation, route }) => {
   return (
     <View>
       <Navbar value={value} setValue={setValue} onSearch={handleSearch}/>
-      <Text>This is the value to search: {route.params}</Text>
+      <Text>This is the value to search: {route.params?.search}</Text>
     </View>
   );
 };
