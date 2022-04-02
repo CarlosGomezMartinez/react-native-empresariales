@@ -11,7 +11,7 @@ const Details = ({route}) => {
 
   useEffect( async ()=>{
      if(route.params?.code){
-      const res = await getProductById(3)
+      const res = await getProductById(code)
       if (res && res.data && res.status == 200){
         setProduct(res.data)
       }
