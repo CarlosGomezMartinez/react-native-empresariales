@@ -28,7 +28,7 @@ export async function getProductById(code){
     try{  
         var config = {
             method: 'get',
-            url: `http://oldwave-spring-api.herokuapp.com/api/product/${code}/detail`,
+            url: `http:///oldwave-fastapi-backend.herokuapp.com/api/product/${code}/detail`,
             headers: { 
                 'Accept': '/',
                 'Access-Control-Allow-Origin' : '*',
