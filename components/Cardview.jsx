@@ -15,8 +15,6 @@ class Cardview extends Component {
     return (
       <View>
         <Card>
-          <Card.Title>HELLO WORD</Card.Title>
-          <Card.Divider />
           <Card.Image
             style={StyleSheet.card_image}
             source={{
@@ -25,10 +23,7 @@ class Cardview extends Component {
           />
           <Text style={StyleSheet.card_text}>{this.props.item.item.nombre}</Text>
           <Text style={StyleSheet.card_text}>{this.props.item.item.color}</Text>
-          <Button
-            icon={
-              <Icon name="code" color="#ffffff" iconStyle={ StyleSheet.card_icon}/>
-            }
+          <Button            
             buttonStyle={StyleSheet.card_button}
             title="Ver"
           />
