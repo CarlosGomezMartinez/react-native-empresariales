@@ -7,25 +7,25 @@ const Footer = () => {
   return (
   <View>
     <View style={[styles.container, styles.benefits, styles.displayRow]}>
-      <View>
-        <View style={styles.displayRow}>
-          <View style={styles.displayRow}>
+      <View style={styles.displayRow}>
+        <View style={{marginRight:30} }>
+          <View style={[styles.displayRow, {marginBottom: 10}]}>
             <Icon name="shopping-bag" size={20} color="#772CE8"/>
-            <Text>Compras Seguras</Text>
+            <Text style={styles.marginLeft}>Compras Seguras</Text>
           </View>
-          <View style={styles.displayRow}>
-            <Icon name="credit-card" size={20} color="#772CE8"/>
-            <Text>Multiples medios de pago</Text>
-          </View>
-        </View>
-        <View style={styles.displayRow}>
           <View style={styles.displayRow}>
             <Icon name="trophy" size={20} color="#772CE8"/>
-            <Text>Calidad garantizada</Text>
+            <Text style={styles.marginLeft}>Calidad garantizada</Text>
+          </View>
+        </View>
+        <View>
+          <View style={[styles.displayRow, {marginBottom: 10}]}>
+            <Icon name="credit-card" size={20} color="#772CE8"/>
+            <Text style={styles.marginLeft}>Multiples medios de pago</Text>
           </View>
           <View style={styles.displayRow}>
             <Icon name="map-pin" size={20} color="#772CE8"/>
-            <Text>Envios a todo el pais</Text>
+            <Text style={styles.marginLeft}>Envios a todo el pais</Text>
           </View>
         </View>
       </View>
@@ -82,7 +82,9 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 15, 
     fontSize: 16,
   },
-  copyRight: {}
+  marginLeft:{
+    marginLeft: 10
+  }
 })
 
 export default Footer;
