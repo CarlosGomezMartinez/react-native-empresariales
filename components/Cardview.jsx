@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Text, Card, Button } from "react-native-elements";
 
-const Cardview = ({item, showInfo = true}) => {
+const Cardview = ({item, showInfo = true, navigation}) => {
   return (
     <View>
       <Card>
@@ -25,7 +25,7 @@ const Cardview = ({item, showInfo = true}) => {
             buttonStyle={{borderRadius: 10, backgroundColor: '#772CE8', fontWeight: 'bold'}}
             title="Ver detalles"
             type="solid"
-           // onPress={navigation.navigate("Details", {code: item.product_code})} 
+           onPress={()=> navigation.navigate("Details", {code: item.product_code})} 
           />
         </>
         )}
