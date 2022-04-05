@@ -15,16 +15,17 @@ const Cardview = ({item, showInfo = true}) => {
 
         {showInfo && (
         <>
-          <Text style={StyleSheet.card_text}>{item.name}</Text>
-          <Text style={StyleSheet.card_text}>{item.brand}</Text>
-          <Text style={StyleSheet.card_text}>{item.city}</Text>
-          <Text style={StyleSheet.card_text}>{item.rating}</Text>
-          <Text style={StyleSheet.card_text}>{item.price}</Text>
+          <Text style={{marginVertical: 10, textAlign: "center"}}>{item.name}</Text>
+          <Text style={{marginBottom: 10, color: '#772CE8', textAlign: "center"}}>{item.brand}</Text>
+          <Text style={{textAlign: "center"}}>{item.city}</Text>
+          <Text style={{textAlign: "center"}}>{item.rating}</Text>
+          <Text style={{textAlign: "center", marginBottom: 10}}>{item.price}</Text>
 
           <Button            
-            buttonStyle={StyleSheet.card_button}
-            title="Ver"
-            onPress={navigation.navigate("Details", {code: item.product_code})} 
+            buttonStyle={{borderRadius: 10, backgroundColor: '#772CE8', fontWeight: 'bold'}}
+            title="Ver detalles"
+            type="solid"
+           // onPress={navigation.navigate("Details", {code: item.product_code})} 
           />
         </>
         )}
@@ -39,7 +40,8 @@ const styles = StyleSheet.create({
     },
 
     card_text: {
-        marginBottom: 10
+        marginBottom: 10,
+        textAlign: "center"
     },
     card_icon:{
         marginRight: 10
