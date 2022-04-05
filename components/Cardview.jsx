@@ -15,14 +15,14 @@ const Cardview = ({item, showInfo = true, navigation}) => {
 
         {showInfo && (
         <>
-          <Text style={{marginVertical: 10, textAlign: "center"}}>{item.name}</Text>
-          <Text style={{marginBottom: 10, color: '#772CE8', textAlign: "center"}}>{item.brand}</Text>
-          <Text style={{textAlign: "center"}}>{item.city}</Text>
-          <Text style={{textAlign: "center"}}>{item.rating}</Text>
-          <Text style={{textAlign: "center", marginBottom: 10}}>{item.price}</Text>
+          <Text style={{marginVertical: 10, textAlign: "center", fontFamily:'poppins-medium'}}>{item.name}</Text>
+          <Text style={{marginBottom: 10, color: '#772CE8', textAlign: "center", fontFamily:'poppins-semibold'}}>{item.brand}</Text>
+          <Text style={{textAlign: "center", fontFamily:'poppins-medium'}}>{item.city}</Text>
+          <Text style={{textAlign: "center", fontFamily:'poppins-medium'}}>{item.rating}</Text>
+          <Text style={{textAlign: "center", marginBottom: 10, fontFamily:'poppins-medium'}}>{item.price}</Text>
 
           <Button            
-            buttonStyle={{borderRadius: 10, backgroundColor: '#772CE8', fontWeight: 'bold'}}
+            buttonStyle={{borderRadius: 10, backgroundColor: '#772CE8', fontFamily:'poppins-bold'}}
             title="Ver detalles"
             type="solid"
            onPress={()=> navigation.navigate("Details", {code: item.product_code})} 
