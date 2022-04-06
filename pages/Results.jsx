@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text} from 'react-native';
+import { View} from 'react-native';
 import { FlatList } from "react-native-web";
 import Navbar from '../components/Navbar';
 import Cardview from '../components/Cardview';
@@ -28,7 +28,6 @@ const Results = ({ navigation, route }) => {
       setProducts(res.data.items)
     }
   }
-
   
   return (
     <View>
@@ -39,7 +38,7 @@ const Results = ({ navigation, route }) => {
             renderItem= { (item, index)=>
             <Cardview item = {item.item} navigation={navigation}/>            
             }                
-            numColumns={4}
+            numColumns={2}
             />
     </View>
   );
