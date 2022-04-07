@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, ScrollView, Dimensions, Text, StyleSheet } from 'react-native';
+import { View, Image, ScrollView, Dimensions, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 
 const { width } = Dimensions.get("window");
 const height = width * 0.6;
@@ -22,7 +22,7 @@ export default class DetailsCard extends React.Component {
   }
   render() {
     return (
-      <View style={style.container}>
+      <SafeAreaView style={style.container}>
         <ScrollView
           pagingEnabled
           horizontal
@@ -46,7 +46,7 @@ export default class DetailsCard extends React.Component {
             ))
           }
         </View>
-      </View>
+      </SafeAreaView>
     )
   }
 }
@@ -54,9 +54,11 @@ export default class DetailsCard extends React.Component {
 const style = StyleSheet.create({
   container: {
     width,
-    height
+    height,
+    alignSelf: 'center',
+    paddingTop: StatusBar.currentHeight,
   },
-  image: { width, height, resizeMode: 'contain' },
+  image: { width, height, resizeMode: 'center' },
   pagination: {
     flexDirection: 'row',
     position: 'absolute',
@@ -65,7 +67,7 @@ const style = StyleSheet.create({
   },
   pagingText: {
     fontSize: (width / 6),
-    color: '#6933ff',
+    color: '#772CE8',
     margin: 3
   },
   pagingActiveText: {
