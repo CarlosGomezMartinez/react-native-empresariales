@@ -10,9 +10,8 @@ const Details = ({ route }) => {
   const [product, setProduct] = useState({});
 
   useEffect(async () => {
-    //route.params?.code
-    if (5) {
-      const res = await getProductById(5)
+    if (route.params?.code) {
+      const res = await getProductById(route.params?.code)
       if (res && res.data && res.status == 200) {
         setProduct(res.data)
       }
