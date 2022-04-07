@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { View} from 'react-native';
-import { FlatList } from "react-native-web";
+import { FlatList } from "react-native";
 import Navbar from '../components/Navbar';
 import Cardview from '../components/Cardview';
 import { getProduct } from '../services/Service';
@@ -31,7 +31,7 @@ const Results = ({ navigation, route }) => {
   
   return (
     <View>
-      <Navbar value={value} setValue={setValue} onSearch={handleSearch()}/>
+      <Navbar value={value} setValue={setValue} onSearch={handleSearch}/>
       <FlatList
             data= { products }
             keyExtractor= {(item) => item.product_code}

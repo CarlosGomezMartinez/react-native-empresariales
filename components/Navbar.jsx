@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Text, Platform, Image} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { TouchableWithoutFeedback } from 'react-native-web';
+import { TouchableWithoutFeedback } from 'react-native';
 import OldWavePic from '../assets/oldwave-logo-horizontal.png';
 const Navbar = ({ value, setValue, onSearch}) => (
   <View>
@@ -30,6 +30,11 @@ const Navbar = ({ value, setValue, onSearch}) => (
         placeholder='Estoy buscando...' 
         placeholderTextColor='#666'
         onChangeText={ value => setValue(value)}
+        onKeyPress={(key)=> {
+          if(key.code === 'Enter'){
+            onSearch()
+          }
+        }}
         />
     </View>
   </View>
