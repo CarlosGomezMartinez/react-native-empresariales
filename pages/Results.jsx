@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View} from 'react-native';
-import { FlatList } from "react-native-web";
+import { View, FlatList} from 'react-native';
 import Navbar from '../components/Navbar';
 import Cardview from '../components/Cardview';
 import { getProduct } from '../services/Service';
@@ -32,14 +31,16 @@ const Results = ({ navigation, route }) => {
   return (
     <View>
       <Navbar value={value} setValue={setValue} onSearch={handleSearch()}/>
-      <FlatList
-            data= { products }
-            keyExtractor= {(item) => item.product_code}
-            renderItem= { (item, index)=>
-            <Cardview item = {item.item} navigation={navigation}/>            
-            }                
-            numColumns={2}
-            />
+        <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+        <FlatList
+              data= { products }
+              keyExtractor= {(item) => item.product_code}
+              renderItem= { (item, index)=>
+              <Cardview item = {item.item} navigation={navigation}/>            
+              }                
+              numColumns={1}
+              />
+        </View>
     </View>
   );
 };
