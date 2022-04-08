@@ -29,7 +29,8 @@
     "react-number-format": "^4.9.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "cypress": "^9.5.3"
   },
   "private": true
 }
