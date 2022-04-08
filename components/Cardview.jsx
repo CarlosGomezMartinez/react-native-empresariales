@@ -1,12 +1,12 @@
 import React from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
-import { Text, Card, Button, Rating } from "react-native-elements";
+import { View, StyleSheet } from "react-native";
+import { Text, Card, Button } from "react-native-elements";
 import NumberFormat from "react-number-format";
 import RatingCard from "./RatingCard";
 
 const Cardview = ({ item, showInfo = true, navigation }) => {
   return (
-    <ScrollView>
+    
       <View style={styles.containerCard}>
         <Card containerStyle={{ borderRadius: 8, borderWidth: 1, borderColor: '#E2E2E2', borderStyle: 'solid', width: '70%', height: 336, opacity: 1, elevation: 5 }}>
           <Card.Image
@@ -43,7 +43,7 @@ const Cardview = ({ item, showInfo = true, navigation }) => {
           )}
         </Card>
       </View>
-    </ScrollView>
+    
   );
 }
 
