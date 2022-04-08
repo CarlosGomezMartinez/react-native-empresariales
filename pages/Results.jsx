@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { View, ScrollView, FlatList } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import { View, ScrollView} from 'react-native';
+import { FlatList } from "react-native";
 import Navbar from '../components/Navbar';
 import Cardview from '../components/Cardview';
 import { getProduct } from '../services/Service';
@@ -30,6 +31,7 @@ const Results = ({ navigation, route }) => {
   }
 
   return (
+
     <View style={{flex:1}}>
       <Navbar value={value} setValue={setValue} onSearch={handleSearch} />
       <ScrollView>
@@ -42,10 +44,11 @@ const Results = ({ navigation, route }) => {
               <Cardview item={item.item} navigation={navigation} />
             }
             numColumns={1}
-          />
-          <Footer/>
+          />         
         </View>
+        <Footer/>
         </ScrollView>  
+
     </View>
   );
 };
