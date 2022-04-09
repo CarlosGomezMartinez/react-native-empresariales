@@ -61,9 +61,9 @@ jobs:
           start: expo start -w
           wait-on: http://localhost:19006
 
-  pull-request:
+  pull-request-master:
     needs: [cypress-run, prebuild] 
-    if: success()
+    if: success() && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -71,6 +71,9 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "master"
+        pr_title: "Pulling ${{ github.ref }} into master"
+        pr_body: "👑 *An automated PR*"
+        pr_draft: true
         github_token: ${{ secrets.GH_TOKEN }}
 
   publish:
