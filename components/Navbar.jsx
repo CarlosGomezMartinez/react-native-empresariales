@@ -21,7 +21,7 @@ const Navbar = ({ value, setValue, onSearch}) => (
     <View style={styles.search}>
       <TouchableWithoutFeedback onPress={onSearch}>
         <View style={styles.searchIcon}>
-          <Icon onPress={onSearch} name="search" size={20} color="#772CE8"/>
+          <Icon testID='search-button' onPress={onSearch} name="search" size={20} color="#772CE8"/>
         </View>
       </TouchableWithoutFeedback>
       <TextInput
