@@ -63,7 +63,7 @@ jobs:
 
   pull-request-master:
     needs: [cypress-run, prebuild] 
-    if: success() && github.event.pull_request.merged == true
+    if: ${{ github.event.pull_request.merged == true && github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
