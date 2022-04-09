@@ -9,6 +9,7 @@ on:
 
 jobs:
   prebuild:
+    if: github.event.pull_request.open == true 
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup repo
@@ -62,13 +63,14 @@ jobs:
           wait-on: http://localhost:19006
 
   pull-request-master:
-    needs: [cypress-run, prebuild] 
-    if: ${{ github.event.pull_request.merged == true && github.ref == 'refs/heads/develop' }}
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: pull-request
-      uses: repo-sync/pull-request@v2
+      name: checkout
+
+    - uses: repo-sync/pull-request@v2
+      name: pull-request
       with:
         destination_branch: "master"
         pr_title: "Pulling ${{ github.ref }} into master"
