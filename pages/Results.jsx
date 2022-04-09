@@ -25,9 +25,11 @@ const Results = ({ navigation, route }) => {
   }
   const search = async (name) => {
     const res = await getProduct({ name, page: 1, size: 5 })
-    if (res && res.data && res.status == 200) {
-      setProducts(res.data.items)
-    }
+    const allProducts = res.reduce((curr, next)=> {
+      return next && next.data && next.status == 200 ? curr.concat(next.data.items) : curr
+    }, [])
+    setProducts(allProducts)
+    
   }
 
   return (
@@ -39,8 +41,8 @@ const Results = ({ navigation, route }) => {
           <FlatList style={{marginVertical:30, paddingVertical:10}}
             nestedScrollEnabled={true}
             data={products}
-            keyExtractor={(item) => item.product_code}
-            renderItem={(item, index) =>
+            keyExtractor={(item, index) => item.product_code+index}
+            renderItem={(item) =>
               <Cardview item={item.item} navigation={navigation} />
             }
             numColumns={1}
