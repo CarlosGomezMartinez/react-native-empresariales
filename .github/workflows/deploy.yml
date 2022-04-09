@@ -9,6 +9,7 @@ on:
 
 jobs:
   prebuild:
+    if: github.event.pull_request.merged == false 
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup repo
@@ -62,7 +63,6 @@ jobs:
           wait-on: http://localhost:19006
 
   pull-request-master:
-    needs: [cypress-run, prebuild] 
     if: ${{ github.event.pull_request.merged == true && github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
