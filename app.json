@@ -24,7 +24,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.esteban.restrepo1.reactnativeempresariales"
+      "package": "com.esteban.restrepo1.reactnativeempresariales",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

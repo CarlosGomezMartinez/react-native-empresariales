@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, ScrollView} from 'react-native';
-import { FlatList } from "react-native";
+import { View, ScrollView, Text} from 'react-native';
 import Navbar from '../components/Navbar';
 import Cardview from '../components/Cardview';
 import { getProduct } from '../services/Service';
@@ -24,10 +23,15 @@ const Results = ({ navigation, route }) => {
     }
   }
   const search = async (name) => {
+    let searchProducts = []
     const res = await getProduct({ name, page: 1, size: 5 })
-    if (res && res.data && res.status == 200) {
-      setProducts(res.data.items)
+    if(res){
+      searchProducts = res.reduce((curr, next)=> {
+        return next && next.data && next.status == 200 ? curr.concat(next.data.items) : curr
+      }, [])
     }
+    setProducts(searchProducts)
+    
   }
 
   return (
@@ -35,16 +39,16 @@ const Results = ({ navigation, route }) => {
     <View style={{flex:1}}>
       <Navbar value={value} setValue={setValue} onSearch={handleSearch} />
       <ScrollView>
-        <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-          <FlatList style={{marginVertical:30, paddingVertical:10}}
-            nestedScrollEnabled={true}
-            data={products}
-            keyExtractor={(item) => item.product_code}
-            renderItem={(item, index) =>
-              <Cardview item={item.item} navigation={navigation} />
-            }
-            numColumns={1}
-          />         
+        <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', display:'flex', justifyContent:'center'}}>
+          <View style={{marginVertical:30, paddingVertical:10}}>
+            {products.length > 0 && products.map((product, index)=> {
+              return  <Cardview key={product.product_code+index} item={product} navigation={navigation} />
+            })}
+
+            {products && products.length === 0 && (
+              <Text>NO SE ENCONTRARON RESULTADOS</Text>
+            )}
+          </View>
         </View>
         <Footer/>
         </ScrollView>  
