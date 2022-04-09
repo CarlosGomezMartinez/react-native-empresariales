@@ -1,10 +1,14 @@
 on:
+  push:
+    branches:
+      - develop
+      - master
   pull_request:
     branches:
       - develop
-#test actions
+
 jobs:
-  build:
+  prebuild:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup repo
@@ -24,8 +28,11 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm install
+      - name: 🚀 PreBuild app
+        run: expo build:web
 
   cypress-run:
+    if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -53,30 +60,43 @@ jobs:
           build: expo build:web
           start: expo start -w
           wait-on: http://localhost:19006
-          # cypres: npm run cypress:open
 
-      # - name: 🚀 Publish app
-      #   run: expo publish --non-interactive
-  # publish:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: 🏗 Setup repo
-  #       uses: actions/checkout@v2
+  pull-request:
+    needs: [cypress-run, prebuild] 
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "master"
+        github_token: ${{ secrets.GH_TOKEN }}
 
-  #     - name: 🏗 Setup Node
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 16.x
-  #         cache: npm
+  publish:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v2
 
-  #     - name: 🏗 Setup Expo
-  #       uses: expo/expo-github-action@v7
-  #       with:
-  #         expo-version: latest
-  #         token: ${{ secrets.EXPO_TOKEN }}
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: npm
 
-  #     - name: 📦 Install dependencies
-  #       run: npm install
+      - name: 🏗 Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
 
-      # - name: 🚀 Publish app
-      #   run: expo publish --non-interactive
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: 🚀 Build app
+        run: eas build --non-interactive --platform android
+
+      - name: 🚀 Publish app
+        run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
