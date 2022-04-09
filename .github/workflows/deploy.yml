@@ -8,67 +8,69 @@ on:
       - develop
 
 jobs:
-  prebuild:
-    if: github.event.pull_request.merged == false 
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🏗 Setup repo
-        uses: actions/checkout@v2
+  # prebuild:
+  #   if: github.event.pull_request.open == true 
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 🏗 Setup repo
+  #       uses: actions/checkout@v2
 
-      - name: 🏗 Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-          cache: npm
+  #     - name: 🏗 Setup Node
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 16.x
+  #         cache: npm
 
-      - name: 🏗 Setup Expo
-        uses: expo/expo-github-action@v7
-        with:
-          expo-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+  #     - name: 🏗 Setup Expo
+  #       uses: expo/expo-github-action@v7
+  #       with:
+  #         expo-version: latest
+  #         token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: 📦 Install dependencies
-        run: npm install
-      - name: 🚀 PreBuild app
-        run: expo build:web
+  #     - name: 📦 Install dependencies
+  #       run: npm install
+  #     - name: 🚀 PreBuild app
+  #       run: expo build:web
 
-  cypress-run:
-    if: ${{ github.event_name != 'push' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: 🏗 Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-          cache: npm
+  # cypress-run:
+  #   if: ${{ github.event_name != 'push' }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     # Install NPM dependencies, cache them correctly
+  #     # and run all Cypress tests
+  #     - name: 🏗 Setup Node
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 16.x
+  #         cache: npm
 
-      - name: 🏗 Setup Expo
-        uses: expo/expo-github-action@v7
-        with:
-          expo-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+  #     - name: 🏗 Setup Expo
+  #       uses: expo/expo-github-action@v7
+  #       with:
+  #         expo-version: latest
+  #         token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: 📦 Install dependencies
-        run: npm install
+  #     - name: 📦 Install dependencies
+  #       run: npm install
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          build: expo build:web
-          start: expo start -w
-          wait-on: http://localhost:19006
+  #     - name: Cypress run
+  #       uses: cypress-io/github-action@v2
+  #       with:
+  #         build: expo build:web
+  #         start: expo start -w
+  #         wait-on: http://localhost:19006
 
   pull-request-master:
-    if: ${{ github.event.pull_request.merged == true && github.ref == 'refs/heads/develop' }}
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: pull-request
-      uses: repo-sync/pull-request@v2
+      name: checkout
+
+    - uses: repo-sync/pull-request@v2
+      name: pull-request
       with:
         destination_branch: "master"
         pr_title: "Pulling ${{ github.ref }} into master"
